@@ -1,9 +1,16 @@
 package org.vert.db;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Type;
@@ -20,41 +27,45 @@ public class User {
 	private Long id;
 
 	//Nombre completo
-	@Column(name = "usr_name")
+	@Column(name = "usr_name", nullable = false)
 	private String name;
 
-	//Nombre de usuario
-	@Column(name = "usr_username")
-	private String username;
-
 	//Contrasenia
-	@Column(name = "usr_pwd")
+	@Column(name = "usr_pwd", nullable=false)
 	private String password;
 
 	//Correo electronico
-	@Column(name = "usr_email")
+	@Column(name = "usr_email", nullable=false)
 	private String email;
 
 	//Numeo telefonico con lada
-	@Column(name = "usr_phone")
+	@Column(name = "usr_phone",nullable=false)
 	private String phone;
 
 	//Id del jefe del usuario (si es que tiene)
-	@Column(name = "usr_boss_id")
-	private Long boss;
-
-	//Id del status del usuario
-	@Column(name = "usr_ust_id")
-	private Integer status;
-
-	//Id del perfil de usuario
-	@Column(name = "usr_usp_id")
-	private Integer profile;
+	@ManyToOne
+	@JoinColumn(name = "usr_boss_id")
+	private User boss;
+	
+	@Enumerated(EnumType.STRING)
+	@Column(name = "usr_status", nullable = false)
+	private UserStatus status;
+	
+	@Enumerated(EnumType.STRING)
+	@Column(name = "usr_profile", nullable = false)
+	private UserProfile profile;
 
 	//Si el usuario se encuentra activo ('Y') o inactivo ('N')
-	@Column(name = "usr_active")
+	@Column(name = "usr_active", nullable=false)
 	@Type(type="yes_no")
 	private Boolean active;
+
+	//Balance
+	@Column(name = "usr_balance", nullable=false)
+	private Integer balance;
+
+	@OneToMany(mappedBy="boss")
+	private Set<User> users;
 
 	/** Getters & Setters */
 
@@ -64,14 +75,6 @@ public class User {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public Integer getProfile() {
-		return profile;
-	}
-
-	public void setProfile(Integer profile) {
-		this.profile = profile;
 	}
 
 	public String getEmail() {
@@ -106,20 +109,12 @@ public class User {
 		this.phone = phone;
 	}
 
-	public Long getBoss() {
+	public User getBoss() {
 		return boss;
 	}
 
-	public void setBoss(Long boss) {
+	public void setBoss(User boss) {
 		this.boss = boss;
-	}
-
-	public Integer getStatus() {
-		return status;
-	}
-
-	public void setStatus(Integer status) {
-		this.status = status;
 	}
 
 	public Boolean getActive() {
@@ -130,12 +125,38 @@ public class User {
 		this.active = active;
 	}
 
-	public String getUsername() {
-		return username;
+	public Set<User> getUsers() {
+		return users;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setUsers(Set<User> users) {
+		this.users = users;
 	}
+	
+	public Integer getBalance() {
+		return balance;
+	}
+
+	public void setBalance(Integer balance) {
+		this.balance = balance;
+	}
+
+	public UserStatus getStatus() {
+		return status;
+	}
+
+	public void setStatus(UserStatus status) {
+		this.status = status;
+	}
+
+	public UserProfile getProfile() {
+		return profile;
+	}
+
+	public void setProfile(UserProfile profile) {
+		this.profile = profile;
+	}
+
+	
 
 }

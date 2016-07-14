@@ -17,15 +17,41 @@
 	<h:outputScript library="js" name="scripts.js" />
 </h:head>
 <c:set var="auth" value="#{SessionContext.auth}"></c:set>
+<c:set var="reg" value="#{SessionContext.register}"></c:set>
 <h:body>
-	<h:form id="form">
+	<h:form id="admin-form">
 		<pm:page>
-			<pm:header styleClass="header" title="Title">
-				<h1>Vert</h1>
+			<pm:header styleClass="header" title="Vert">
 			</pm:header>
 
 			<pm:content styleClass="content">
-				<p:commandButton value="crear datos" actionListener="#{auth.create}"></p:commandButton>
+				<h:panelGrid columns="2">
+					<label>Nombre</label>
+					<h:inputText ></h:inputText>
+					
+					<label>Correo</label>
+					<h:inputText ></h:inputText>
+					
+					<label>Telefono</label>
+					<h:inputText ></h:inputText>
+					
+					<label>Password</label>
+					<h:inputSecret />
+					
+					<label>Confirmar password</label>
+					<h:inputSecret />
+					
+					<label>Status</label>
+					<h:selectOneMenu>
+						<f:selectItems value="#{reg.statusList}"></f:selectItems>
+					</h:selectOneMenu>
+					
+					<label>Perfil</label>
+					<h:selectOneMenu>
+						<f:selectItems value="#{reg.profileList}"></f:selectItems>
+					</h:selectOneMenu>
+				</h:panelGrid>
+				<p:commandButton value="Registrar"></p:commandButton>
 			</pm:content>
 
 

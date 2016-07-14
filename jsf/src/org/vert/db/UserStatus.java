@@ -1,41 +1,23 @@
 package org.vert.db;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import java.util.Arrays;
+import java.util.List;
 
-@Entity
-@Table(name = "user_status")
-public class UserStatus {
+public enum UserStatus {
+	SUSCRIBED(1),
+	UNSUSCRIBED(2);
 
-	//Id del status
-	@Id
-	@GeneratedValue
-	@Column(name = "ust_id")
-	private Integer id;
-	
-	//Descripcion del status
-	@Column(name = "ust_description")
-	private String description;
+	private int value;
 
-	/** Getters & Setters */
-	
-	public Integer getId() {
-		return id;
+	private UserStatus(int value) {
+		this.value = value;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
+	public int getValue() {
+		return value;
 	}
 	
+	public static List<UserStatus> getValuesAsList(){
+		return Arrays.asList(values());
+	}
 }

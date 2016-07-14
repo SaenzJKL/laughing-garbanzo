@@ -1,39 +1,26 @@
 package org.vert.db;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import java.util.Arrays;
+import java.util.List;
 
-@Entity
-@Table(name="ride_status")
-public class RideStatus {
-	
-	@Id
-	@GeneratedValue
-	@Column(name = "rst_id")
-	private Long id;
-	
-	@Column(name="rst_description", nullable=false)
-	private String description;
-	
-	/** Getters and Setters **/
-	public Long getId() {
-		return id;
+public enum RideStatus {
+	READY(1),
+	STARTED(2),
+	FINISHED(3),
+	CANCELED(4);
+
+	private int value;
+
+	private RideStatus(int value) {
+		this.value = value;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
+	public int getValue() {
+		return value;
 	}
 	
-	
+	public static List<RideStatus> getValuesAsList(){
+		return Arrays.asList(values());
+	}
+
 }

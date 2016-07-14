@@ -1,41 +1,24 @@
 package org.vert.db;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import java.util.Arrays;
+import java.util.List;
 
-@Entity
-@Table(name = "user_profile")
-public class UserProfile {
-	
-	//Id de tipo de perfil
-	@Id
-	@GeneratedValue
-	@Column(name = "usp_id")
-	private Integer id;
-	
-	//Descripcion del perfil
-	@Column(name = "usp_description")
-	private String description;
-	
-	/** Getters & Setters */
+public enum UserProfile {
+	ADMIN(1),
+	DRIVER(2),
+	CLIENT(3);
 
-	public Integer getId() {
-		return id;
+	private int value;
+
+	private UserProfile(int value) {
+		this.value = value;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
+	public int getValue() {
+		return value;
 	}
 	
+	public static List<UserProfile> getValuesAsList(){
+		return Arrays.asList(values());
+	}
 }

@@ -10,5 +10,17 @@
 		<managed-bean-class>org.vert.context.ContextBeans</managed-bean-class>
 		<managed-bean-scope>request</managed-bean-scope>
 	</managed-bean>
+	
+	<managed-bean>
+		<managed-bean-name>SessionContext</managed-bean-name>
+		<managed-bean-class>org.vert.context.SessionContext</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	
+	<managed-bean>
+		<managed-bean-name>Catalogs</managed-bean-name>
+		<managed-bean-class>org.vert.model.Catalogs</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
 
 </faces-config>
