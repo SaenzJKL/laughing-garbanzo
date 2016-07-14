@@ -19,46 +19,21 @@
 <c:set var="auth" value="#{SessionContext.auth}"></c:set>
 <c:set var="reg" value="#{SessionContext.register}"></c:set>
 <h:body>
-	<h:form id="admin-form">
-		<pm:page>
-			<pm:header styleClass="header" title="Vert">
-			</pm:header>
+	<pm:page>
+		<pm:header styleClass="header" title="Vert">
+		</pm:header>
 
-			<pm:content styleClass="content">
-				<h:panelGrid columns="2">
-					<label>Nombre</label>
-					<h:inputText ></h:inputText>
-					
-					<label>Correo</label>
-					<h:inputText ></h:inputText>
-					
-					<label>Telefono</label>
-					<h:inputText ></h:inputText>
-					
-					<label>Password</label>
-					<h:inputSecret />
-					
-					<label>Confirmar password</label>
-					<h:inputSecret />
-					
-					<label>Status</label>
-					<h:selectOneMenu>
-						<f:selectItems value="#{reg.statusList}"></f:selectItems>
-					</h:selectOneMenu>
-					
-					<label>Perfil</label>
-					<h:selectOneMenu>
-						<f:selectItems value="#{reg.profileList}"></f:selectItems>
-					</h:selectOneMenu>
-				</h:panelGrid>
-				<p:commandButton value="Registrar"></p:commandButton>
-			</pm:content>
+		<pm:content styleClass="content">
+			
+			<h:form id="form">
+				<p:growl id="growl" showDetail="true"></p:growl>
+				<p:inputText value="#{reg.name}" required="true"></p:inputText>
+				<p:commandButton value="Aceptar" actionListener="#{reg.register}" update="growl"/>
+			</h:form>
+		</pm:content>
+		<pm:footer styleClass="footer" title="Footer">
 
-
-			<pm:footer styleClass="footer" title="Footer">
-
-			</pm:footer>
-		</pm:page>
-	</h:form>
+		</pm:footer>
+	</pm:page>
 </h:body>
 </html>

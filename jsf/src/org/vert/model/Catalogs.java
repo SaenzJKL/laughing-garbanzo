@@ -17,7 +17,7 @@ public class Catalogs extends Form{
 	/**
 	 * Catalogs
 	 */
-	private static final long serialVersionUID = 1959486815712601234L;
+	private static final long serialVersionUID = 1L;
 
 	private static List<UserStatus> userStatus;
 	
