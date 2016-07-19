@@ -27,6 +27,19 @@
 			
 			<h:form id="form">
 				<p:growl id="growl" showDetail="true"></p:growl>
+				<h:panelGrid columns="2">
+					<p:outputLabel value="Nombre" for="name"/>
+					<p:inputText value="#{reg.name}" id="name" required="true" />
+					
+					<p:outputLabel value="Correo" for="email"/>
+					<p:inputText value="#{reg.email}" id="email" required="true" />
+					
+					<p:outputLabel value="Telefono" for="phone"/>
+					<p:inputText value="#{reg.phone}" id="phone" required="true" />
+					
+					<p:outputLabel value="Password" for="password el perrito saltador"/>
+					<p:password value="#{reg.password}" id="password" required="true"/>
+				</h:panelGrid>
 				<p:inputText value="#{reg.name}" required="true"></p:inputText>
 				<p:commandButton value="Aceptar" actionListener="#{reg.register}" update="growl"/>
 			</h:form>
