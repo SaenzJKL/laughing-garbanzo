@@ -1,3 +1,3 @@
-findByPrimaryKey{
-	FROM org.vert.db.User where id = :id
+findByUsername{
+	FROM org.vert.db.User where usr_name = :username
 }

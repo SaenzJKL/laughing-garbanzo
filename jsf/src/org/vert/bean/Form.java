@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.Serializable;
 
 import javax.el.ELContext;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,6 +22,14 @@ public class Form implements Serializable{
 	 */
 	public FacesContext getFacesContext(){
 		return FacesContext.getCurrentInstance();
+	}
+	
+	/**
+	 * Send an error message to the currentInstance
+	 * @param message
+	 */
+	public void errorMessage(String message){
+		getFacesContext().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", message));
 	}
 	
 	/**

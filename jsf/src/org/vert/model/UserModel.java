@@ -13,9 +13,10 @@ public class UserModel {
 	public static User findByUserName(String userName){
 		Session session = HibernateSession.getSession();
 		session.beginTransaction();
-		String sql = SQL.getQuery("User", "findByUserName");
+		String sql = SQL.getQuery("User", "findByUsername");
+		System.out.println(sql);
 		Query query = session.createQuery(sql);
-		query.setParameter("user", userName);
+		query.setParameter("username", userName);
 		List<User> list = query.list();
 		session.close();
 		return list.get(0);

@@ -24,24 +24,44 @@
 		</pm:header>
 
 		<pm:content styleClass="content">
-			
+
 			<h:form id="form">
-				<p:growl id="growl" showDetail="true"></p:growl>
-				<h:panelGrid columns="2">
-					<p:outputLabel value="Nombre" for="name"/>
+				<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+				<h:panelGrid columns="3" id="values-grid">
+					<p:outputLabel value="Nombre" for="name" />
 					<p:inputText value="#{reg.name}" id="name" required="true" />
-					
-					<p:outputLabel value="Correo" for="email"/>
+					<p:message for="name" display="text"></p:message>
+
+					<p:outputLabel value="Correo" for="email" />
 					<p:inputText value="#{reg.email}" id="email" required="true" />
-					
-					<p:outputLabel value="Telefono" for="phone"/>
+					<p:message for="email" display="text"></p:message>
+
+					<p:outputLabel value="Telefono" for="phone" />
 					<p:inputText value="#{reg.phone}" id="phone" required="true" />
-					
-					<p:outputLabel value="Password" for="password el perrito saltador"/>
-					<p:password value="#{reg.password}" id="password" required="true"/>
+					<p:message for="phone" display="text"></p:message>
+
+					<p:outputLabel value="Password" for="password" />
+					<p:password value="#{reg.password}" id="password" required="true" />
+					<p:message for="password" display="text"></p:message>
+
+					<p:outputLabel value="Confirmar password" for="confirm-password" />
+					<p:password value="#{reg.confirmPassword}" id="confirm-password"
+						required="true" />
+					<p:message for="confirm-password" display="text"></p:message>
 				</h:panelGrid>
-				<p:inputText value="#{reg.name}" required="true"></p:inputText>
-				<p:commandButton value="Aceptar" actionListener="#{reg.register}" update="growl"/>
+				<h:panelGrid columns="2" id="grid-menus">
+					<p:outputLabel value="Status" for="status"></p:outputLabel>
+					<h:selectOneMenu id="status" value="#{reg.status}">
+						<f:selectItems value="#{reg.statusList}"></f:selectItems>
+					</h:selectOneMenu>
+
+					<p:outputLabel value="Perfil" for="profile"></p:outputLabel>
+					<h:selectOneMenu id="profile" value="#{reg.profile}">
+						<f:selectItems value="#{reg.profileList}"></f:selectItems>
+					</h:selectOneMenu>
+				</h:panelGrid>
+				<p:commandButton value="Aceptar" actionListener="#{reg.register}"
+					update="messages values-grid" icon="check" />
 			</h:form>
 		</pm:content>
 		<pm:footer styleClass="footer" title="Footer">

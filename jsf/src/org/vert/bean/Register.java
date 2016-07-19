@@ -2,12 +2,12 @@ package org.vert.bean;
 
 import java.util.List;
 
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
-
+import org.vert.db.User;
 import org.vert.db.UserProfile;
 import org.vert.db.UserStatus;
+import org.vert.hibernate.HibernateSession;
 import org.vert.model.Catalogs;
+import org.vert.resources.SHAHash;
 
 public class Register extends Form{
 
@@ -15,28 +15,54 @@ public class Register extends Form{
 	 * Register bean
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	//nombre del usuario
 	private String name;
-	
+
 	//correo del usuario
 	private String email;
-	
+
 	private String phone;
-	
+
 	private String password;
-	
+
 	private String confirmPassword;
+
+	private UserStatus status;
 	
+	private UserProfile profile;
+
 	private List<UserStatus> statusList;
-	
+
 	private List<UserProfile> profileList;
-	
+
 	public void register(){
-		System.out.println("asdas");
-		
+		if(password.equals(confirmPassword)){
+			User user = new User();
+			user.setName(name);
+			user.setEmail(email);
+			user.setPassword(SHAHash.hash(password));
+			user.setPhone(phone);
+			user.setStatus(status);
+			user.setActive(true);
+			user.setProfile(profile);
+			user.setBalance(0);
+			HibernateSession.saveObject(user);
+			
+		}else{
+			errorMessage("Las contrasenas no coinciden");
+		}
+		clearValues();
 	}
-	
+
+	public void clearValues(){
+		name = null;
+		email = null;
+		phone = null;
+		password = null;
+		confirmPassword = null;
+
+	}
 	/* Getters and Setters */
 	public String getName() {
 		return name;
@@ -94,6 +120,22 @@ public class Register extends Form{
 
 	public void setProfileList(List<UserProfile> profileList) {
 		this.profileList = profileList;
+	}
+
+	public UserStatus getStatus() {
+		return status;
+	}
+
+	public void setStatus(UserStatus status) {
+		this.status = status;
+	}
+
+	public UserProfile getProfile() {
+		return profile;
+	}
+
+	public void setProfile(UserProfile profile) {
+		this.profile = profile;
 	}
 
 }

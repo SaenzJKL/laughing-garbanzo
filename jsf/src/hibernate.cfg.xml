@@ -40,8 +40,6 @@
         <property name="hbm2ddl.auto">update</property>
         
   		<mapping class="org.vert.db.User"/>
-        <mapping class="org.vert.db.UserProfile"/>
-         <mapping class="org.vert.db.UserStatus"/>
 
     </session-factory>
 </hibernate-configuration>

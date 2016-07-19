@@ -9,19 +9,25 @@ import org.hibernate.cfg.Configuration;
 public class HibernateSession {
 	private static final SessionFactory sessionFactory;
 	private static Session session;
-	
+
 	static{
-			sessionFactory = new Configuration().configure().buildSessionFactory();
+		sessionFactory = new Configuration().configure().buildSessionFactory();
 	}
-	
+
 	public static void saveObject(Object object){
 		session = sessionFactory.openSession();
-		session.beginTransaction();
-		session.save(object);
-		session.getTransaction().commit();
-		session.close();
+		try{
+			session.beginTransaction();
+			session.save(object);
+			session.getTransaction().commit();
+		}catch(Exception  e){
+			e.printStackTrace();
+		}finally{
+			session.close();
+		}
+
 	}
-	
+
 	public static <T> Object getObjectByPrimaryKey(Class <T> objectClass, Serializable pk){
 		session = sessionFactory.openSession();
 		session.beginTransaction();
@@ -38,5 +44,5 @@ public class HibernateSession {
 		HibernateSession.session = session;
 	}
 
-	
+
 }

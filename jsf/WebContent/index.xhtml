@@ -25,7 +25,13 @@
 			</pm:header>
 
 			<pm:content styleClass="content">
-				<p:commandButton value="crear datos" actionListener="#{auth.create}"></p:commandButton>
+				<p:outputLabel value="Nombre" for="name"></p:outputLabel>
+				<p:inputText id="name" value="#{auth.username}"></p:inputText>
+				
+				<p:outputLabel value="Password" for="password"></p:outputLabel>
+				<p:inputText id="password" value="#{auth.password}"></p:inputText>
+				
+				<p:commandButton value="Log In" actionListener="#{auth.login}"></p:commandButton>
 			</pm:content>
 
 
