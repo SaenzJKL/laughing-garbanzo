@@ -1,2 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pageflow:Pageflow xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf14670605620080" configfile="/vert-extranet/WebContent/WEB-INF/faces-config.xml"/>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf14670605620080" configfile="/vert-extranet/WebContent/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="index.xhtml" id="pf14689439672200" referenceLink="//@navigationRule.1/@fromViewId|" outlinks="pf14689439672201 pf14689496629923" path="/index.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/client/home.xhtml" id="pf14689439672212" referenceLink="//@navigationRule.1/@navigationCase.0/@toViewId|" inlinks="pf14689439672201" path="/pages/client/home.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/driver/route.xhtml" id="pf14689496629924" referenceLink="//@navigationRule.1/@navigationCase.0/@toViewId|" inlinks="pf14689496629923" path="/pages/driver/route.xhtml"/>
+  <links id="pf14689439672201" target="pf14689439672212" source="pf14689439672200" outcome="CLIENT"/>
+  <links id="pf14689496629923" target="pf14689496629924" source="pf14689439672200" outcome="DRIVER"/>
+</pageflow:Pageflow>
