@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui">
+	
+	<h:body>
+	
+		<ui:composition template="/templates/layout.xhtml">
+		
+			<ui:define name="header">
+				<div id="header" class="MapHeader">
+		  			<h:outputText styleClass="HeaderLabel" id="destination" value="Destino" />
+		  			<h:outputText styleClass="HeaderLabel" id="distance" value="3 Km" />
+		  			<h:outputText styleClass="HeaderLabel" id="time" value="1 min"/>
+  				</div>
+			</ui:define>
+			
+			<ui:define name="content">
+				<style>
+				 	html, body {
+				 		height: 100%;
+				 		margin: 0;
+				 		padding: 0;
+				 	}
+				 	#map {
+				 		height: 92vh;
+				 	}
+				</style>
+				<ui:include src="/templates/map.xhtml" />
+			</ui:define>
+			
+		</ui:composition>
+		
+	</h:body>
+	
+</html>
